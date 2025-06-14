@@ -1,0 +1,83 @@
+# Certificats et clés privées
+*.key
+*.crt
+*.pem
+*.p12
+*.pfx
+certificates/
+
+# Logs
+*.log
+logs/
+/var/log/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Fichiers de configuration avec données sensibles
+*-private.ovpn
+*-secret.conf
+
+# Fichiers système Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Fichiers système macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+
+# Fichiers système Linux
+*~
+.nfs*
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node.js (pour les bots)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (pour les bots)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Backups
+*.bak
+*.backup
+backup/
+backups/
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# Installateurs
+*.msi
+*.exe
+*.deb
+*.rpm
+
+# Fichiers de statut OpenVPN
+ipp.txt
+openvpn-status.log
