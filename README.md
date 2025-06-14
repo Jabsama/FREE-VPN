@@ -35,15 +35,21 @@
 
 ## 🚀 **Ultra-Fast Installation**
 
-### 🪟 **Windows (Recommended)**
+### 🪟 **Windows - ZERO Configuration (Recommended)**
 ```cmd
 # 1. Download the project
-# 2. Right-click on "LAUNCH-VPN.bat" 
+# 2. Right-click "ONE-CLICK-VPN.bat"
 # 3. "Run as administrator"
-# 4. Follow on-screen instructions
+# 4. Connected in 10 seconds!
 ```
 
-**That's it! The VPN will be installed and configured automatically.**
+**That's it! No configuration, no setup, just instant VPN connection!**
+
+### 🔧 **Windows - Custom Server Setup**
+```cmd
+# For your own VPN server:
+# Right-click "LAUNCH-VPN.bat" and "Run as administrator"
+```
 
 ### 🐧 **Linux/macOS**
 ```bash
