@@ -102,6 +102,7 @@ FREE-VPN/
 - **Wechaty** (Node.js) - Recommended
 - **itchat** (Python)
 - **WeChat4U** (Node.js)
+- **BOT-SHA-256** (Multi-platform) - Perfect Integration ⭐
 
 ### **Quick Example:**
 ```javascript
@@ -119,7 +120,16 @@ bot.on('message', async msg => {
 bot.start()
 ```
 
-**📖 Complete Guide:** [docs/wechat-bot-integration.md](docs/wechat-bot-integration.md)
+### **🚀 BOT-SHA-256 Integration (Recommended)**
+Perfect for **VoltageGPU affiliate marketing** across 8 platforms:
+- ✅ **WeChat, Bilibili, Zhihu, Weibo** (requires our VPN)
+- ✅ **Twitter, Telegram, Reddit, LinkedIn** (global)
+- ✅ **1,700+ posts/day** with Chinese market access
+- ✅ **+$3,375/month** additional revenue potential
+
+**📖 Complete Guides:** 
+- [WeChat Bot Integration](docs/wechat-bot-integration.md)
+- [BOT-SHA-256 Integration](docs/bot-sha-256-integration.md) ⭐
 
 ---
 
