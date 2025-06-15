@@ -35,7 +35,17 @@
 
 ## 🚀 **Ultra-Fast Installation**
 
-### 🪟 **Windows - ZERO Configuration (Recommended)**
+### 🌍 **Flexible VPN - Like NordVPN (NEW!)**
+```cmd
+# 1. Download the project
+# 2. Right-click "FLEXIBLE-VPN.bat"
+# 3. "Run as administrator"
+# 4. Choose from 15 countries!
+```
+
+**Professional VPN with country selection, web interface, and website integration!**
+
+### 🪟 **Windows - ZERO Configuration**
 ```cmd
 # 1. Download the project
 # 2. Right-click "ONE-CLICK-VPN.bat"
@@ -43,9 +53,14 @@
 # 4. Connected in 10 seconds!
 ```
 
-**That's it! No configuration, no setup, just instant VPN connection!**
+### 🌐 **Web Interface**
+```cmd
+# Install dependencies: pip install -r requirements.txt
+# Launch: python web_interface.py
+# Access: http://localhost:8080
+```
 
-### 🔧 **Windows - Custom Server Setup**
+### 🔧 **Custom Server Setup**
 ```cmd
 # For your own VPN server:
 # Right-click "LAUNCH-VPN.bat" and "Run as administrator"
