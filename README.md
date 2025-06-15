@@ -35,7 +35,18 @@
 
 ## 🚀 **Ultra-Fast Installation**
 
-### 🎯 **ONE-CLICK START (Recommended)**
+### 🐳 **DOCKER DEPLOYMENT (New!)**
+```cmd
+# Windows - Run as administrator
+DOCKER-DEPLOY.bat
+
+# Linux/macOS
+chmod +x docker-deploy.sh && ./docker-deploy.sh
+```
+
+**Complete VPN server with monitoring, security, and web interface in one command!**
+
+### 🎯 **ONE-CLICK START (Classic)**
 ```cmd
 # 1. Download the project
 # 2. Right-click "🚀 START HERE.bat"
@@ -165,11 +176,26 @@ Perfect for **VoltageGPU affiliate marketing** across 8 platforms:
 
 ## 🔧 **Advanced Features**
 
-### **Security:**
-- 🔐 **AES-256-CBC Encryption**
-- 🛡️ **Integrated Kill Switch**
-- 🚫 **DNS Leak Protection**
-- 🔑 **TLS Authentication**
+### **🔐 Enhanced Security (New!):**
+- 🔒 **Secure Certificate Manager** - Encrypted private keys with AES-256
+- 🔑 **Automated Key Rotation** - Certificate renewal and backup
+- 🛡️ **GPG Encrypted Backups** - Secure storage of sensitive data
+- 🔐 **TLS 1.2+ Only** - Modern encryption standards
+- 🚫 **DNS Leak Protection** - Integrated kill switch
+
+### **📊 Real-time Monitoring (New!):**
+- 📈 **Live Dashboard** - CPU, Memory, Network, Connections
+- 🚨 **Smart Alerts** - Email notifications for critical events
+- 📊 **Historical Charts** - Performance trends and analytics
+- 👥 **User Management** - Track client connections and usage
+- 🔍 **Log Analysis** - Advanced filtering and search
+
+### **🐳 Docker Deployment (New!):**
+- 🚀 **One-Click Deploy** - Complete stack in minutes
+- 🔄 **Auto-scaling** - Handle multiple concurrent users
+- 💾 **Persistent Storage** - Data survives container restarts
+- 🌐 **Web Interface** - Manage everything from browser
+- 📱 **Mobile Responsive** - Access from any device
 
 ### **Performance:**
 - ⚡ **China-Optimized**
@@ -181,6 +207,7 @@ Perfect for **VoltageGPU affiliate marketing** across 8 platforms:
 - 🪟 **Windows** 10/11
 - 🐧 **Linux** (Ubuntu, CentOS, Arch)
 - 🍎 **macOS** (Intel/Apple Silicon)
+- 🐳 **Docker** (All platforms)
 
 ---
 
