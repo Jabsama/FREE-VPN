@@ -35,38 +35,36 @@
 
 ## 🚀 **Ultra-Fast Installation**
 
-### 🌍 **Flexible VPN - Like NordVPN (NEW!)**
+### 🎯 **ONE-CLICK START (Recommended)**
 ```cmd
 # 1. Download the project
-# 2. Right-click "FLEXIBLE-VPN.bat"
+# 2. Right-click "🚀 START HERE.bat"
 # 3. "Run as administrator"
-# 4. Choose from 15 countries!
+# 4. Choose your experience!
 ```
 
-**Professional VPN with country selection, web interface, and website integration!**
+**Interactive launcher with 8 options - perfect for beginners and pros!**
 
-### 🪟 **Windows - ZERO Configuration**
+### 🌍 **Direct Access Options**
+
+#### **China VPN (Quick)**
 ```cmd
-# 1. Download the project
-# 2. Right-click "ONE-CLICK-VPN.bat"
-# 3. "Run as administrator"
-# 4. Connected in 10 seconds!
+Right-click "ONE-CLICK-VPN.bat" → "Run as administrator"
 ```
 
-### 🌐 **Web Interface**
+#### **Flexible VPN (15 Countries)**
 ```cmd
-# Install dependencies: pip install -r requirements.txt
-# Launch: python web_interface.py
+Right-click "FLEXIBLE-VPN.bat" → "Run as administrator"
+```
+
+#### **Web Interface**
+```cmd
+pip install -r requirements.txt
+python web_interface.py
 # Access: http://localhost:8080
 ```
 
-### 🔧 **Custom Server Setup**
-```cmd
-# For your own VPN server:
-# Right-click "LAUNCH-VPN.bat" and "Run as administrator"
-```
-
-### 🐧 **Linux/macOS**
+#### **Linux/macOS**
 ```bash
 sudo ./scripts/setup-linux.sh
 ```
