@@ -1,230 +1,236 @@
-# 🌐 FREE VPN - Complete Multi-Platform VPN Solution
+# 🌐 FREE VPN - Open Source VPN Dashboard
 
-A comprehensive VPN solution with **three modes**: Real VPN for desktop, Browser API demo, and Mobile-optimized proxy solution.
+A complete, unified VPN solution with multiple modes for different use cases. Single file deployment with web dashboard interface.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.7+](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://opensource.org/)
 
 ## 🚀 Quick Start
 
-### 🖥️ Desktop - Real VPN (Recommended)
 ```bash
-# 1. Install OpenVPN first (see INSTALL_OPENVPN.md)
-# 2. Start the real VPN server
-python real_vpn_api.py
+# Clone the repository
+git clone https://github.com/Jabsama/FREE-VPN.git
+cd FREE-VPN
 
-# 3. Open browser to http://YOUR_IP:8080
+# Install dependencies
+pip install -r requirements_api.txt
+
+# Run the unified VPN dashboard
+python unified_vpn.py
 ```
 
-### 📱 Mobile - Proxy Solution
-```bash
-# Start mobile-optimized server
-python mobile_vpn_solution.py
+**Access:** http://localhost:8080
 
-# Open mobile browser to http://YOUR_IP:8080/mobile
-```
+## ✨ Features
 
-### 🧪 Demo - Browser API
-```bash
-# Start demo server (for testing/development)
-python vpn_browser_api.py
-```
+### 🎯 **Unified Dashboard**
+- **Single file deployment** - Everything in `unified_vpn.py`
+- **Auto-detection** - Automatically recommends best mode for your device
+- **Web interface** - Modern, responsive dashboard
+- **REST API** - Complete API for integration
 
-## 📊 Platform Comparison
+### 🌍 **Multiple VPN Modes**
 
-| Feature | Desktop Real VPN | Mobile Solution | Browser Demo |
-|---------|------------------|-----------------|--------------|
-| **Actual internet browsing** | ✅ Yes | ❌ Simulation | ❌ Simulation |
-| **Real IP address change** | ✅ Yes | ❌ No | ❌ No |
-| **OpenVPN integration** | ✅ Required | ❌ Not needed | ❌ Not needed |
-| **Mobile compatibility** | ❌ Limited | ✅ Optimized | 🟡 Basic |
-| **Setup complexity** | 🟡 Medium | ✅ Easy | ✅ Easy |
-| **Security level** | 🟢 High | 🟡 Medium | 🟡 Demo only |
+| Mode | Description | Requirements | Use Case |
+|------|-------------|--------------|----------|
+| **🖥️ Real VPN** | Actual internet routing via OpenVPN | OpenVPN + Admin rights | Desktop users wanting real VPN |
+| **📱 Mobile** | Mobile-optimized proxy solution | None | Mobile devices and tablets |
+| **🚀 Zero Install** | Browser-only, no installation | None | Quick access, no setup |
+| **🧪 Demo** | Testing and development | None | Developers and testing |
 
-## 📱 Mobile Limitations & Solutions
+### 🌐 **Server Network**
+- **13 total servers** across 4 modes
+- **Multiple countries** - USA, UK, Netherlands, Japan, Germany
+- **Free servers** - ProtonVPN free tier integration
+- **Proxy servers** - HTTP/HTTPS proxy support
 
-### ⚠️ Why Mobile VPN is Limited
+## 📋 Requirements
 
-**Browser Security Restrictions:**
-- Mobile browsers cannot install system-level VPN
-- No access to network interfaces
-- Cannot modify routing tables
-- Sandboxed environment
+### Minimal Requirements (Zero Install & Mobile modes)
+- Python 3.7+
+- Web browser
+- Internet connection
 
-**Technical Limitations:**
-- iOS: App Store restrictions on VPN apps
-- Android: Requires VPN permission for real VPN
-- Web browsers: Cannot access VPN APIs
-
-### ✅ Mobile Solutions Provided
-
-**1. HTTP Proxy Mode:**
-- Simulates VPN connection
-- Works in mobile browsers
-- Easy to use interface
-- No installation required
-
-**2. Manual Proxy Configuration:**
-- Users can configure proxy in device settings
-- Provides proxy server details
-- Works with all mobile apps
-
-**3. Mobile-Optimized Interface:**
-- Touch-friendly design
-- Responsive layout
-- Fast loading
-- Offline-capable
-
-## 🌐 Real VPN Mode (Desktop)
-
-### Requirements
-- **OpenVPN installed** (see [INSTALL_OPENVPN.md](INSTALL_OPENVPN.md))
+### Full Requirements (Real VPN mode)
+- Python 3.7+
+- OpenVPN installed
 - Administrator/root privileges
 - Internet connection
 
-### Features
-- **Actual internet traffic routing** through VPN servers
-- **Real IP address changes** - your IP actually changes
-- **Free VPN servers** using ProtonVPN free tier
-- **Complete web interface** for easy control
-- **REST API** for programmatic access
+## 🛠️ Installation
 
-### Available Servers
-- 🇺🇸 **USA Free Server** - us-free-01.protonvpn.net
-- 🇳🇱 **Netherlands Free** - nl-free-01.protonvpn.net  
-- 🇯🇵 **Japan Free** - jp-free-01.protonvpn.net
-
-## 📱 Mobile VPN Mode
-
-### Features
-- **Mobile-optimized interface** with touch controls
-- **Automatic mobile detection** redirects to mobile version
-- **HTTP proxy simulation** for VPN-like experience
-- **Responsive design** works on all screen sizes
-- **No installation required** - works in any mobile browser
-
-### Mobile Compatibility
-- ✅ **iOS Safari** - Full compatibility
-- ✅ **Android Chrome** - Full compatibility  
-- ✅ **Firefox Mobile** - Full compatibility
-- ✅ **Edge Mobile** - Full compatibility
-- ✅ **Samsung Internet** - Full compatibility
-
-### Mobile Servers
-- 🇺🇸 **USA Mobile Proxy** - HTTP proxy mode
-- 🇬🇧 **UK Mobile Proxy** - HTTP proxy mode
-- 🇯🇵 **Japan Mobile Proxy** - HTTP proxy mode
-
-## 🛠️ API Documentation
-
-### Desktop VPN API
-```javascript
-// Real VPN connection
-POST /api/connect/usa_free
-GET /api/status
-POST /api/disconnect
-GET /api/servers
-```
-
-### Mobile VPN API  
-```javascript
-// Mobile proxy connection
-POST /api/mobile/connect/usa_mobile
-GET /api/mobile/status
-POST /api/mobile/disconnect
-GET /api/mobile/servers
-```
-
-## 🔧 Installation & Setup
-
-### Desktop Setup
-1. **Install OpenVPN** (see INSTALL_OPENVPN.md)
-2. **Run as administrator** (Windows) or with sudo (Linux/Mac)
-3. **Start server:** `python real_vpn_api.py`
-4. **Open browser:** http://YOUR_IP:8080
-
-### Mobile Setup
-1. **Start mobile server:** `python mobile_vpn_solution.py`
-2. **Open mobile browser:** http://YOUR_IP:8080/mobile
-3. **No installation required**
-
-## 🔒 Security Features
-
-### Desktop VPN Security
-- **AES-256-CBC encryption**
-- **SHA256 authentication**
-- **TLS certificate verification**
-- **DNS leak protection**
-- **Kill switch functionality**
-
-### Mobile Proxy Security
-- **HTTPS proxy connections**
-- **Encrypted API communication**
-- **Secure session management**
-- **No data logging**
-
-## ⚠️ Important Notes
-
-### Desktop VPN
-- **Requires OpenVPN installation**
-- **Needs administrator privileges**
-- **Actually routes internet traffic**
-- **Changes your real IP address**
-- **Works with all applications**
-
-### Mobile VPN
-- **Browser-based only**
-- **Proxy simulation mode**
-- **No real IP address change**
-- **Easy to use, no installation**
-- **Limited to HTTP/HTTPS traffic**
-
-### Demo Mode
-- **For testing and development**
-- **Simulates VPN functionality**
-- **No real network changes**
-- **Safe for demonstrations**
-
-## 🚀 Quick Commands
-
+### Option 1: Quick Setup (Recommended)
 ```bash
-# Real VPN (Desktop)
-python real_vpn_api.py
+git clone https://github.com/Jabsama/FREE-VPN.git
+cd FREE-VPN
+pip install flask flask-cors requests
+python unified_vpn.py
+```
 
-# Mobile VPN
-python mobile_vpn_solution.py  
+### Option 2: With Requirements File
+```bash
+git clone https://github.com/Jabsama/FREE-VPN.git
+cd FREE-VPN
+pip install -r requirements_api.txt
+python unified_vpn.py
+```
 
-# Demo VPN
-python vpn_browser_api.py
+### Option 3: OpenVPN Setup (for Real VPN mode)
 
-# Install OpenVPN (Ubuntu/Debian)
-sudo apt install openvpn
-
-# Install OpenVPN (Windows)
+**Windows:**
+```bash
 winget install OpenVPN.OpenVPN
 ```
 
-## 📖 Documentation Files
+**Ubuntu/Debian:**
+```bash
+sudo apt update
+sudo apt install openvpn
+```
 
-- **[INSTALL_OPENVPN.md](INSTALL_OPENVPN.md)** - OpenVPN installation guide
-- **[PRODUCTION_READY.md](PRODUCTION_READY.md)** - Production deployment guide
-- **[LICENSE](LICENSE)** - MIT License
+**macOS:**
+```bash
+brew install openvpn
+```
+
+## 🎮 Usage
+
+### Web Dashboard
+1. Start the server: `python unified_vpn.py`
+2. Open browser: http://localhost:8080
+3. Select your preferred mode (Real/Mobile/Zero/Demo)
+4. Choose a server and click "Connect"
+
+### API Usage
+```python
+import requests
+
+# Get status
+response = requests.get('http://localhost:8080/api/unified/status')
+print(response.json())
+
+# Connect to server
+response = requests.post('http://localhost:8080/api/unified/connect/usa_real')
+print(response.json())
+
+# Disconnect
+response = requests.post('http://localhost:8080/api/unified/disconnect')
+print(response.json())
+```
+
+## 🔧 API Reference
+
+### Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/unified/status` | Get current VPN status |
+| `GET` | `/api/unified/servers` | List all available servers |
+| `GET` | `/api/unified/servers?mode=real` | Filter servers by mode |
+| `POST` | `/api/unified/connect/<server_key>` | Connect to specific server |
+| `POST` | `/api/unified/disconnect` | Disconnect from VPN |
+| `GET` | `/proxy/<url>` | Proxy endpoint for web requests |
+
+### Response Format
+```json
+{
+  "connected": true,
+  "current_server": "usa_real",
+  "current_mode": "real",
+  "current_ip": "192.168.1.100",
+  "recommended_mode": "real",
+  "available_modes": ["real", "mobile", "zero", "demo"],
+  "timestamp": "2025-06-16T17:30:00"
+}
+```
+
+## 🌟 Modes Explained
+
+### 🖥️ Real VPN Mode
+- **What it does:** Routes all internet traffic through VPN servers
+- **Requirements:** OpenVPN installed, admin privileges
+- **Best for:** Desktop users wanting complete VPN protection
+- **Servers:** ProtonVPN free tier (USA, Netherlands, Japan)
+
+### 📱 Mobile Mode
+- **What it does:** HTTP proxy optimized for mobile browsers
+- **Requirements:** None
+- **Best for:** Mobile devices, tablets, quick browsing
+- **Servers:** Mobile-optimized proxy servers
+
+### 🚀 Zero Install Mode
+- **What it does:** Browser-based proxy using public services
+- **Requirements:** None
+- **Best for:** Quick access, no installation, restricted environments
+- **Servers:** Cloudflare WARP, Google Translate, Archive.org, CORS proxies
+
+### 🧪 Demo Mode
+- **What it does:** Simulates VPN connection for testing
+- **Requirements:** None
+- **Best for:** Developers, testing, demonstrations
+- **Servers:** Demo servers for development
+
+## 🔒 Security Features
+
+- **AES-256-CBC encryption** (Real VPN mode)
+- **SHA256 authentication** (Real VPN mode)
+- **DNS leak protection** (Real VPN mode)
+- **HTTPS proxy connections** (Mobile/Zero modes)
+- **No logging policy** - No user data stored
+- **Open source** - Full code transparency
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch
-3. Test on both desktop and mobile
-4. Submit a pull request
+We welcome contributions! Here's how you can help:
 
-## 📄 License
+1. **Fork the repository**
+2. **Create a feature branch:** `git checkout -b feature/amazing-feature`
+3. **Commit your changes:** `git commit -m 'Add amazing feature'`
+4. **Push to the branch:** `git push origin feature/amazing-feature`
+5. **Open a Pull Request**
+
+### Development Setup
+```bash
+git clone https://github.com/Jabsama/FREE-VPN.git
+cd FREE-VPN
+pip install -r requirements_api.txt
+python unified_vpn.py
+```
+
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## ⚠️ Disclaimer
+
+This software is provided for educational and research purposes. Users are responsible for complying with their local laws and regulations. The authors are not responsible for any misuse of this software.
+
+## 🆘 Support
+
+- **Issues:** [GitHub Issues](https://github.com/Jabsama/FREE-VPN/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/Jabsama/FREE-VPN/discussions)
+- **Documentation:** This README and inline code comments
+
+## 🎯 Roadmap
+
+- [ ] Add more VPN providers
+- [ ] Implement WireGuard support
+- [ ] Add bandwidth monitoring
+- [ ] Create mobile app
+- [ ] Add user authentication
+- [ ] Implement server load balancing
+
+## 📊 Statistics
+
+- **4 VPN modes** supported
+- **13 servers** across multiple countries
+- **Single file** deployment
+- **Zero configuration** for most modes
+- **Open source** and free to use
+
 ---
 
-**🌐 Multi-Platform VPN Solution**  
-**Desktop**: Real VPN with OpenVPN  
-**Mobile**: Optimized proxy solution  
-**Demo**: Browser-based simulation  
+**Made with ❤️ for the open source community**
 
-**Status**: ✅ Production Ready  
-**Version**: 3.0.0  
-**Mobile Support**: ✅ Optimized
+**Star ⭐ this repository if you find it useful!**
