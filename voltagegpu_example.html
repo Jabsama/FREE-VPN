@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltageGPU.com - VPN Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            color: white;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .integration-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .code-example {
+            background: #2d2d2d;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .code-example pre {
+            margin: 0;
+            color: #f8f8f2;
+        }
+        
+        .highlight {
+            color: #a6e22e;
+        }
+        
+        .comment {
+            color: #75715e;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚡ VoltageGPU.com</h1>
+        <p>Professional VPN Dashboard Integration</p>
+    </div>
+    
+    <div class="container">
+        <div class="integration-info">
+            <h2>🌐 VPN Dashboard Integration</h2>
+            <p>This page demonstrates how to integrate VoltageVPN into your voltagegpu.com website.</p>
+            <p><strong>The VPN dashboard will appear below when VoltageVPN server is running.</strong></p>
+        </div>
+        
+        <div class="code-example">
+            <h3>📋 Integration Steps for voltagegpu.com:</h3>
+            <pre><code><span class="comment"><!-- 1. Add this div to your VPN dashboard page --></span>
+<span class="highlight">&lt;div id="vpn-dashboard"&gt;&lt;/div&gt;</span>
+
+<span class="comment"><!-- 2. Include the VoltageVPN integration script --></span>
+<span class="highlight">&lt;script src="voltagegpu_integration.js"&gt;&lt;/script&gt;</span>
+
+<span class="comment"><!-- 3. That's it! The dashboard will auto-load --></span></code></pre>
+        </div>
+        
+        <!-- VPN Dashboard Container -->
+        <div id="vpn-dashboard"></div>
+        
+        <div class="integration-info">
+            <h3>🚀 How It Works</h3>
+            <p>1. <strong>Download VoltageVPN:</strong> Users download the GitHub repo</p>
+            <p>2. <strong>Run VoltageVPN:</strong> <code>python voltagevpn.py</code></p>
+            <p>3. <strong>Visit Your Site:</strong> https://voltagegpu.com/vpn/dashboard</p>
+            <p>4. <strong>Real VPN Works:</strong> Changes IP on ALL websites!</p>
+            
+            <h3>🔧 API Endpoints Available</h3>
+            <div class="code-example">
+                <pre><code><span class="comment">// Get VPN status</span>
+<span class="highlight">GET</span> http://localhost:8080/api/status
+
+<span class="comment">// Connect to server</span>
+<span class="highlight">POST</span> http://localhost:8080/api/connect/voltage_usa_east
+
+<span class="comment">// Disconnect VPN</span>
+<span class="highlight">POST</span> http://localhost:8080/api/disconnect
+
+<span class="comment">// List servers</span>
+<span class="highlight">GET</span> http://localhost:8080/api/servers</code></pre>
+            </div>
+            
+            <h3>✅ Benefits for VoltageGPU.com</h3>
+            <ul style="text-align: left; display: inline-block;">
+                <li><strong>Real VPN Service:</strong> Actually changes user IP on ALL websites</li>
+                <li><strong>Professional Dashboard:</strong> Beautiful interface integrated with your site</li>
+                <li><strong>Free for Users:</strong> No costs, no registration required</li>
+                <li><strong>Easy Integration:</strong> Just add one div and one script</li>
+                <li><strong>GitHub Download:</strong> Users get VPN by downloading repo</li>
+                <li><strong>Brand Integration:</strong> VPN dashboard matches your site design</li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Include VoltageVPN Integration -->
+    <script src="voltagegpu_integration.js"></script>
+    
+    <script>
+        // Additional customization for voltagegpu.com
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🌐 VoltageGPU.com VPN Dashboard loaded');
+            
+            // You can customize the API URL if needed
+            // window.voltageGPUVPN = new VoltageGPUVPN('http://your-server:8080');
+        });
+    </script>
+</body>
+</html>
