@@ -1,0 +1,63 @@
+# VPN Browser API Server - Requirements
+# Installation: pip install -r requirements_api.txt
+
+# Framework web principal
+Flask==2.3.3
+flask-cors==4.0.0
+
+# Monitoring système et réseau
+psutil==5.9.5
+
+# Requêtes HTTP
+requests==2.31.0
+
+# Utilitaires système
+pathlib2==2.3.7
+
+# Sécurité et cryptographie
+cryptography==41.0.4
+
+# Gestion des processus
+subprocess32==3.5.4; python_version < '3.0'
+
+# Gestion des dates
+python-dateutil==2.8.2
+
+# JSON avancé
+ujson==5.8.0
+
+# Logging avancé
+colorlog==6.7.0
+
+# Configuration
+configparser==6.0.0
+
+# Validation des données
+marshmallow==3.20.1
+
+# Cache et performance
+cachetools==5.3.1
+
+# Utilitaires réseau
+netifaces==0.11.0
+
+# Gestion des certificats SSL
+pyOpenSSL==23.2.0
+
+# Compression
+zstandard==0.21.0
+
+# Monitoring avancé
+prometheus-client==0.17.1
+
+# WebSocket support (pour futures améliorations)
+websockets==11.0.3
+
+# Async support
+aiohttp==3.8.5
+
+# CLI utilities
+click==8.1.7
+
+# Environment variables
+python-dotenv==1.0.0
