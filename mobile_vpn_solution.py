@@ -17,6 +17,7 @@ import os
 import tempfile
 from datetime import datetime
 from pathlib import Path
+from vpn_config import get_mobile_server_config
 
 app = Flask(__name__)
 CORS(app)
@@ -35,98 +36,8 @@ MOBILE_VPN_STATE = {
 }
 
 # Mobile-optimized VPN Servers
-MOBILE_SERVERS = {
-    'mobile_usa_east': {
-        'name': 'VoltageVPN USA East',
-        'flag': '🇺🇸',
-        'location': 'New York, USA',
-        'host': 'us-free-01.protonvpn.net',
-        'port': 1194,
-        'protocol': 'udp',
-        'username': 'proton_free',
-        'password': 'proton_free',
-        'speed': '100 Mbps',
-        'load': '23%',
-        'ping': '12ms',
-        'status': 'online',
-        'mobile_optimized': True
-    },
-    'mobile_usa_west': {
-        'name': 'VoltageVPN USA West',
-        'flag': '🇺🇸',
-        'location': 'Los Angeles, USA',
-        'host': 'us-free-02.protonvpn.net',
-        'port': 1194,
-        'protocol': 'udp',
-        'username': 'proton_free',
-        'password': 'proton_free',
-        'speed': '100 Mbps',
-        'load': '31%',
-        'ping': '8ms',
-        'status': 'online',
-        'mobile_optimized': True
-    },
-    'mobile_uk': {
-        'name': 'VoltageVPN United Kingdom',
-        'flag': '🇬🇧',
-        'location': 'London, UK',
-        'host': 'uk-free-01.protonvpn.net',
-        'port': 1194,
-        'protocol': 'udp',
-        'username': 'proton_free',
-        'password': 'proton_free',
-        'speed': '100 Mbps',
-        'load': '18%',
-        'ping': '15ms',
-        'status': 'online',
-        'mobile_optimized': True
-    },
-    'mobile_germany': {
-        'name': 'VoltageVPN Germany',
-        'flag': '🇩🇪',
-        'location': 'Frankfurt, Germany',
-        'host': 'de-free-01.protonvpn.net',
-        'port': 1194,
-        'protocol': 'udp',
-        'username': 'proton_free',
-        'password': 'proton_free',
-        'speed': '100 Mbps',
-        'load': '27%',
-        'ping': '10ms',
-        'status': 'online',
-        'mobile_optimized': True
-    },
-    'mobile_netherlands': {
-        'name': 'VoltageVPN Netherlands',
-        'flag': '🇳🇱',
-        'location': 'Amsterdam, Netherlands',
-        'host': 'nl-free-01.protonvpn.net',
-        'port': 1194,
-        'protocol': 'udp',
-        'username': 'proton_free',
-        'password': 'proton_free',
-        'speed': '100 Mbps',
-        'load': '15%',
-        'ping': '12ms',
-        'status': 'online',
-        'mobile_optimized': True
-    },
-    'mobile_japan': {
-        'name': 'VoltageVPN Japan',
-        'flag': '🇯🇵',
-        'location': 'Tokyo, Japan',
-        'host': 'jp-free-01.protonvpn.net',
-        'port': 1194,
-        'protocol': 'udp',
-        'username': 'proton_free',
-        'password': 'proton_free',
-        'speed': '100 Mbps',
-        'load': '22%',
-        'ping': '25ms',
-        'status': 'online',
-        'mobile_optimized': True
-    }
-}
+# Load mobile server configuration securely
+MOBILE_SERVERS = get_mobile_server_config()
 
 def get_current_ip():
     """Get current public IP address"""
