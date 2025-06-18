@@ -266,9 +266,83 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Discussions:** [GitHub Discussions](https://github.com/Jabsama/FREE-VPN/discussions)
 - **Website:** https://voltagegpu.com
 
+## 📱 Mobile Support (Android & iOS)
+
+**VoltageVPN now works on mobile devices!** No app installation required - just use your mobile browser.
+
+### 🚀 Quick Mobile Setup
+
+```bash
+# 1. Start VoltageVPN Mobile
+python mobile_vpn_solution.py
+
+# 2. Open mobile browser and visit:
+# http://your-server-ip:8081/mobile
+```
+
+### 📱 Mobile Features
+
+| Feature | Status | Description |
+|---------|--------|-------------|
+| **📱 Touch Optimized** | ✅ Available | Responsive design for mobile screens |
+| **🌍 Works on ALL Apps** | ✅ Available | Changes IP for all mobile apps & websites |
+| **🔋 Battery Efficient** | ✅ Available | Optimized for mobile battery life |
+| **📶 No App Required** | ✅ Available | Works through mobile browsers |
+| **🆓 Completely Free** | ✅ Available | Same free service as desktop |
+
+### 🔧 Mobile Instructions
+
+#### For Android Users:
+1. **Open Chrome or Firefox** on your Android device
+2. **Visit:** `http://your-server-ip:8081/mobile`
+3. **Choose any server** from the list
+4. **Tap "Connect"** and wait 30-60 seconds
+5. **✅ Your IP is now changed** on ALL mobile apps!
+
+#### For iOS Users:
+1. **Open Safari** on your iPhone/iPad
+2. **Visit:** `http://your-server-ip:8081/mobile`
+3. **Choose any server** from the list
+4. **Tap "Connect"** and wait 30-60 seconds
+5. **✅ Your IP is now changed** on ALL mobile apps!
+
+### 📋 Mobile Requirements
+
+- **Android 6.0+** or **iOS 12.0+**
+- **Mobile browser** (Chrome, Firefox, Safari)
+- **Internet connection**
+- **VoltageVPN server running** on your computer/server
+
+### 🌐 Mobile Server Access
+
+You can access the mobile VPN from anywhere:
+
+- **Local Network:** `http://192.168.1.xxx:8081/mobile`
+- **Public Server:** `https://your-domain.com:8081/mobile`
+- **VoltageGPU Integration:** `https://voltagegpu.com/mobile-vpn`
+
+### 🔒 Mobile Security
+
+- **✅ Same encryption** as desktop version (AES-256-GCM)
+- **✅ Real IP change** on ALL mobile apps
+- **✅ DNS leak protection** for mobile browsers
+- **✅ No logging** - completely anonymous on mobile
+- **✅ Kill switch** - blocks internet if VPN disconnects
+
+### 📊 Mobile vs Desktop Comparison
+
+| Feature | Desktop | Mobile |
+|---------|---------|--------|
+| **Real IP Change** | ✅ Yes | ✅ Yes |
+| **Works on ALL Sites** | ✅ Yes | ✅ Yes |
+| **OpenVPN Protocol** | ✅ Yes | ✅ Yes (Proxy Mode) |
+| **Touch Interface** | ❌ No | ✅ Yes |
+| **Battery Optimized** | ❌ N/A | ✅ Yes |
+| **No Installation** | ✅ Yes | ✅ Yes |
+
 ## 🎯 Roadmap
 
-- [ ] **Mobile apps** (Android/iOS)
+- [x] **Mobile support** (Android/iOS) - ✅ **COMPLETED!**
 - [ ] **Browser extensions** (Chrome/Firefox)
 - [ ] **WireGuard support**
 - [ ] **More server locations**

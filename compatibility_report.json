@@ -1,0 +1,76 @@
+{
+  "compatibility_check": {
+    "python": {
+      "compatible": true,
+      "version": "3.12.4",
+      "required": "3.7+",
+      "status": "OK"
+    },
+    "dependencies": {
+      "flask": {
+        "required": true,
+        "available": true,
+        "version": "3.1.0"
+      },
+      "flask_cors": {
+        "required": true,
+        "available": true,
+        "version": "5.0.0"
+      },
+      "requests": {
+        "required": true,
+        "available": true,
+        "version": "2.32.3"
+      },
+      "subprocess": {
+        "required": true,
+        "available": true,
+        "version": "builtin"
+      },
+      "socket": {
+        "required": true,
+        "available": true,
+        "version": "builtin"
+      }
+    },
+    "openvpn": {
+      "available": false,
+      "version": null,
+      "status": "NOT_INSTALLED"
+    },
+    "admin": {
+      "has_admin": false,
+      "method": "Windows UAC",
+      "status": "USER"
+    },
+    "network": {
+      "internet": true,
+      "port_8080_available": true,
+      "dns_resolution": true
+    },
+    "system": {
+      "platform": "Windows",
+      "architecture": "64bit",
+      "hostname": "DESKTOP-B409897"
+    }
+  },
+  "recommended_mode": {
+    "mode": "zero",
+    "description": "Zero Install browser proxy",
+    "capabilities": [
+      "proxy_requests",
+      "browser_routing"
+    ],
+    "limitations": [
+      "no_server_ip_change",
+      "proxy_only"
+    ],
+    "confidence": "medium"
+  },
+  "installation_commands": [
+    "python unified_vpn.py"
+  ],
+  "can_change_real_ip": false,
+  "production_ready": true,
+  "timestamp": "2025-06-16T21:21:36.691249"
+}
