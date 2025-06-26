@@ -1,0 +1,18 @@
+# FREE VPN - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core dependencies for web interface
+flask>=2.0.0
+flask-cors>=3.0.0
+
+# HTTP requests for IP detection
+requests>=2.25.0
+
+# Optional: For enhanced security (uncomment if needed)
+# cryptography>=3.4.0
+# pycryptodome>=3.10.0
+
+# Development dependencies (uncomment for development)
+# pytest>=6.0.0
+# black>=21.0.0
+# flake8>=3.8.0
