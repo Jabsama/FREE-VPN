@@ -17,6 +17,9 @@ import random
 from datetime import datetime
 from pathlib import Path
 
+# Import autonomous VPN module
+from vpn_core import AutonomousVPN
+
 try:
     from flask import Flask, request, jsonify, render_template_string
     from flask_cors import CORS
@@ -30,260 +33,77 @@ VPN_CONFIG = {
     "name": "FREE VPN",
     "version": "2.0.0",
     "port": 8080,
-    "proxy_port": 9050,
+    "autonomous": True,
+    "no_openvpn_required": True,
     "servers": [
-        {"id": "us", "name": "United States", "location": "New York", "flag": "🇺🇸", "speed": "100 Mbps", "load": "23%", "ping": "15ms", "status": "Online"},
-        {"id": "uk", "name": "United Kingdom", "location": "London", "flag": "🇬🇧", "speed": "100 Mbps", "load": "18%", "ping": "12ms", "status": "Online"},
-        {"id": "de", "name": "Germany", "location": "Frankfurt", "flag": "🇩🇪", "speed": "100 Mbps", "load": "27%", "ping": "10ms", "status": "Online"},
-        {"id": "nl", "name": "Netherlands", "location": "Amsterdam", "flag": "🇳🇱", "speed": "100 Mbps", "load": "15%", "ping": "12ms", "status": "Online"},
-        {"id": "ca", "name": "Canada", "location": "Toronto", "flag": "🇨🇦", "speed": "100 Mbps", "load": "31%", "ping": "20ms", "status": "Online"},
-        {"id": "jp", "name": "Japan", "location": "Tokyo", "flag": "🇯🇵", "speed": "100 Mbps", "load": "22%", "ping": "25ms", "status": "Online"}
+        {
+            "id": "us",
+            "name": "United States",
+            "location": "New York",
+            "flag": "🇺🇸",
+            "host": "us-proxy.free-vpn.net",
+            "port": 8080,
+            "speed": "100 Mbps",
+            "load": "Low"
+        },
+        {
+            "id": "uk",
+            "name": "United Kingdom", 
+            "location": "London",
+            "flag": "🇬🇧",
+            "host": "uk-proxy.free-vpn.net",
+            "port": 8080,
+            "speed": "100 Mbps",
+            "load": "Low"
+        },
+        {
+            "id": "de",
+            "name": "Germany",
+            "location": "Frankfurt", 
+            "flag": "🇩🇪",
+            "host": "de-proxy.free-vpn.net",
+            "port": 8080,
+            "speed": "100 Mbps",
+            "load": "Medium"
+        },
+        {
+            "id": "nl",
+            "name": "Netherlands",
+            "location": "Amsterdam",
+            "flag": "🇳🇱", 
+            "host": "nl-proxy.free-vpn.net",
+            "port": 8080,
+            "speed": "100 Mbps",
+            "load": "Low"
+        },
+        {
+            "id": "ca",
+            "name": "Canada",
+            "location": "Toronto",
+            "flag": "🇨🇦",
+            "host": "ca-proxy.free-vpn.net", 
+            "port": 8080,
+            "speed": "100 Mbps",
+            "load": "Medium"
+        },
+        {
+            "id": "jp",
+            "name": "Japan",
+            "location": "Tokyo",
+            "flag": "🇯🇵",
+            "host": "jp-proxy.free-vpn.net",
+            "port": 8080,
+            "speed": "100 Mbps",
+            "load": "Low"
+        }
     ]
 }
-
-class VPNCore:
-    """Core VPN functionality"""
-    
-    def __init__(self):
-        self.connected = False
-        self.connecting = False
-        self.current_server = None
-        self.original_ip = None
-        self.connection_start_time = None
-        self.vpn_process = None
-        
-    def get_ip(self):
-        """Get current public IP address"""
-        try:
-            response = requests.get('https://api.ipify.org?format=json', timeout=10)
-            return response.json()['ip']
-        except:
-            try:
-                response = requests.get('https://httpbin.org/ip', timeout=10)
-                return response.json()['origin'].split(',')[0]
-            except:
-                return 'Unknown'
-    
-    def log_event(self, message, level='INFO'):
-        """Log VPN events"""
-        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print(f"[{timestamp}] [FREE-VPN] [{level}] {message}")
-    
-    def check_openvpn(self):
-        """Check if OpenVPN is available"""
-        try:
-            subprocess.run(['openvpn', '--version'], capture_output=True, check=True)
-            return True
-        except (subprocess.CalledProcessError, FileNotFoundError):
-            return False
-    
-    def setup_proxy_server(self):
-        """Setup internal proxy server for basic privacy"""
-        try:
-            if sys.platform == "win32":
-                import winreg
-                
-                # Configure Windows proxy
-                key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, 
-                                   r"Software\Microsoft\Windows\CurrentVersion\Internet Settings", 
-                                   0, winreg.KEY_SET_VALUE)
-                
-                winreg.SetValueEx(key, "ProxyServer", 0, winreg.REG_SZ, f"127.0.0.1:{VPN_CONFIG['proxy_port']}")
-                winreg.SetValueEx(key, "ProxyEnable", 0, winreg.REG_DWORD, 1)
-                winreg.SetValueEx(key, "ProxyOverride", 0, winreg.REG_SZ, "localhost;127.*;10.*;172.*;192.168.*")
-                
-                winreg.CloseKey(key)
-                
-                # Refresh settings
-                subprocess.run(['rundll32.exe', 'wininet.dll,InternetSetOption'], 
-                              capture_output=True, timeout=10)
-                
-                return True
-            else:
-                self.log_event("Proxy setup not implemented for this OS", 'WARNING')
-                return False
-        except Exception as e:
-            self.log_event(f"Proxy setup failed: {e}", 'ERROR')
-            return False
-    
-    def disable_proxy(self):
-        """Disable system proxy"""
-        try:
-            if sys.platform == "win32":
-                import winreg
-                
-                key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, 
-                                   r"Software\Microsoft\Windows\CurrentVersion\Internet Settings", 
-                                   0, winreg.KEY_SET_VALUE)
-                
-                winreg.SetValueEx(key, "ProxyEnable", 0, winreg.REG_DWORD, 0)
-                winreg.SetValueEx(key, "ProxyServer", 0, winreg.REG_SZ, "")
-                
-                winreg.CloseKey(key)
-                
-                subprocess.run(['rundll32.exe', 'wininet.dll,InternetSetOption'], 
-                              capture_output=True, timeout=10)
-                
-                return True
-            return True
-        except Exception as e:
-            self.log_event(f"Proxy disable failed: {e}", 'ERROR')
-            return False
-    
-    def create_openvpn_config(self, server):
-        """Create OpenVPN configuration for real VPN connection"""
-        config_content = f"""# FREE VPN Configuration - {server['name']}
-# Real VPN that changes IP on ALL websites
-client
-dev tun
-proto udp
-remote free-vpn-{server['id']}.example.com 1194
-resolv-retry infinite
-nobind
-persist-key
-persist-tun
-cipher AES-256-GCM
-auth SHA256
-verb 3
-pull
-fast-io
-
-# DNS settings for complete IP change
-dhcp-option DNS 1.1.1.1
-dhcp-option DNS 1.0.0.1
-dhcp-option DNS 8.8.8.8
-dhcp-option DNS 8.8.4.4
-
-# Security settings
-remote-cert-tls server
-tls-version-min 1.2
-compress lz4-v2
-
-# Kill switch - block internet if VPN disconnects
-block-outside-dns
-"""
-        
-        # Create VPN config directory
-        config_dir = Path('vpn_configs')
-        config_dir.mkdir(exist_ok=True)
-        
-        # Write config file
-        config_path = config_dir / f"{server['id']}.ovpn"
-        with open(config_path, 'w') as f:
-            f.write(config_content)
-        
-        self.log_event(f"Created VPN config for {server['name']}")
-        return str(config_path)
-    
-    def connect(self, server_id):
-        """Connect to VPN server"""
-        if self.connecting:
-            return False, "Connection already in progress"
-        
-        if self.connected:
-            return False, "Already connected. Disconnect first."
-        
-        server = next((s for s in VPN_CONFIG['servers'] if s['id'] == server_id), None)
-        if not server:
-            return False, "Server not found"
-        
-        self.connecting = True
-        
-        try:
-            if not self.original_ip:
-                self.original_ip = self.get_ip()
-            
-            self.log_event(f"Connecting to {server['name']} ({server['location']})...")
-            
-            # Check if OpenVPN is available for real VPN
-            if self.check_openvpn():
-                self.log_event("OpenVPN found - Attempting real VPN connection")
-                
-                # Create OpenVPN configuration
-                config_path = self.create_openvpn_config(server)
-                
-                # Start OpenVPN process (this would connect to real servers in production)
-                self.log_event("Starting OpenVPN connection...")
-                
-                # For demo purposes, we simulate the connection
-                # In production, you would have real VPN servers
-                time.sleep(3)  # Simulate connection time
-                
-                self.connected = True
-                self.current_server = server
-                self.connection_start_time = datetime.now()
-                
-                self.log_event(f"✅ Connected to {server['name']} via OpenVPN")
-                return True, f"Connected to {server['name']}! Real VPN active."
-                
-            else:
-                self.log_event("OpenVPN not found - Using proxy mode")
-                
-                # Setup proxy for basic privacy
-                if self.setup_proxy_server():
-                    self.connected = True
-                    self.current_server = server
-                    self.connection_start_time = datetime.now()
-                    
-                    self.log_event(f"✅ Connected to {server['name']} via proxy")
-                    return True, f"Connected to {server['name']}! Proxy mode active."
-                else:
-                    return False, "Failed to setup proxy connection"
-                    
-        except Exception as e:
-            self.log_event(f"Connection error: {e}", 'ERROR')
-            return False, str(e)
-        finally:
-            self.connecting = False
-    
-    def disconnect(self):
-        """Disconnect from VPN"""
-        try:
-            if not self.connected:
-                return False, "Not connected"
-            
-            self.log_event("Disconnecting VPN...")
-            
-            # Stop OpenVPN process if running
-            if self.vpn_process:
-                self.vpn_process.terminate()
-                self.vpn_process.wait(timeout=10)
-                self.vpn_process = None
-            
-            # Disable proxy
-            self.disable_proxy()
-            
-            self.connected = False
-            self.current_server = None
-            self.connection_start_time = None
-            
-            self.log_event("✅ VPN disconnected successfully")
-            return True, "Disconnected successfully"
-            
-        except Exception as e:
-            self.log_event(f"Disconnection error: {e}", 'ERROR')
-            return False, str(e)
-    
-    def status(self):
-        """Get VPN status"""
-        current_ip = self.get_ip()
-        return {
-            "connected": self.connected,
-            "connecting": self.connecting,
-            "server": self.current_server,
-            "original_ip": self.original_ip,
-            "current_ip": current_ip,
-            "ip_changed": current_ip != self.original_ip if self.original_ip else False,
-            "connection_time": self.connection_start_time.isoformat() if self.connection_start_time else None,
-            "openvpn_available": self.check_openvpn(),
-            "timestamp": datetime.now().isoformat()
-        }
 
 # Flask Web Interface (if Flask is available)
 if FLASK_AVAILABLE:
     app = Flask(__name__)
     CORS(app)
-    vpn_core = VPNCore()
+    vpn_core = AutonomousVPN()
     
     @app.route('/api/status', methods=['GET'])
     def api_status():
@@ -658,7 +478,7 @@ def main():
     """Main entry point"""
     print("🛡️  FREE VPN - Open Source VPN Solution")
     print("=" * 60)
-    print(f"📍 Your current IP: {VPNCore().get_ip()}")
+    print(f"📍 Your current IP: {AutonomousVPN().get_ip()}")
     print()
     
     if FLASK_AVAILABLE:
@@ -680,7 +500,7 @@ def main():
         print("🔧 Running in CLI mode...")
         
         # Simple CLI interface
-        vpn = VPNCore()
+        vpn = AutonomousVPN()
         
         while True:
             print("\n🛡️  FREE VPN - CLI Mode")

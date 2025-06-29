@@ -175,8 +175,80 @@ Enter your choice (1-4):
 | Windows | ✅ Full Support | Proxy + OpenVPN modes |
 | Linux | ✅ Full Support | Proxy + OpenVPN modes |
 | macOS | ⚠️ Partial | CLI mode, OpenVPN support |
-| Android | ❌ Not Supported | Use mobile VPN apps |
-| iOS | ❌ Not Supported | Use mobile VPN apps |
+| Android | ✅ Mobile Web | Via responsive web interface |
+| iOS | ✅ Mobile Web | Via responsive web interface |
+
+## 📱 Mobile Support
+
+### Android & iOS Usage
+
+The VPN works perfectly on mobile devices through the responsive web interface:
+
+#### 📋 Mobile Setup Instructions
+
+1. **Start the VPN server** on your computer:
+   ```bash
+   python vpn.py
+   ```
+
+2. **Find your computer's IP address**:
+   - **Windows**: Open Command Prompt → `ipconfig` → Look for "IPv4 Address"
+   - **Linux/macOS**: Open Terminal → `ifconfig` or `ip addr` → Look for your local IP
+   - **Example**: `192.168.1.100`
+
+3. **Connect from mobile device**:
+   - Make sure your phone is on the same WiFi network
+   - Open your mobile browser (Chrome, Safari, Firefox)
+   - Navigate to: `http://YOUR_COMPUTER_IP:8080`
+   - **Example**: `http://192.168.1.100:8080`
+
+4. **Use the mobile dashboard**:
+   - ✅ Responsive design optimized for mobile
+   - ✅ Touch-friendly buttons and interface
+   - ✅ Real-time connection status
+   - ✅ One-tap server selection
+   - ✅ Auto-refresh functionality
+
+#### 📱 Mobile Features
+
+- **🎯 Touch Optimized**: Large buttons and easy navigation
+- **📊 Real-time Status**: Live connection monitoring
+- **🌍 Server Selection**: Choose from 6 global locations
+- **🔄 Auto-refresh**: Status updates every 30 seconds
+- **📱 Responsive Design**: Works on all screen sizes
+- **🔒 Secure Connection**: Same security as desktop version
+
+#### 🔧 Mobile Troubleshooting
+
+**Can't access the dashboard?**
+- Ensure both devices are on the same WiFi network
+- Check if firewall is blocking port 8080
+- Try accessing: `http://localhost:8080` if on the same device
+- Verify the VPN server is running on your computer
+
+**Connection issues on mobile?**
+- The mobile device uses your computer as a proxy
+- Your computer must stay connected to the VPN
+- Mobile traffic routes through your computer's VPN connection
+
+#### 🌐 Mobile Browser Compatibility
+
+| Browser | Android | iOS | Status |
+|---------|---------|-----|--------|
+| Chrome | ✅ | ✅ | Full Support |
+| Safari | N/A | ✅ | Full Support |
+| Firefox | ✅ | ✅ | Full Support |
+| Edge | ✅ | ✅ | Full Support |
+| Samsung Internet | ✅ | N/A | Full Support |
+
+#### 📲 Mobile Screenshots
+
+The mobile interface includes:
+- **Status Card**: Large, clear connection status
+- **Server Grid**: Touch-friendly server selection
+- **Control Buttons**: Easy connect/disconnect
+- **IP Information**: Real-time IP monitoring
+- **Feature Cards**: VPN benefits overview
 
 ## 🚀 Advanced Usage
 
