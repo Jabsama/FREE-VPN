@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltageGPU VPN Dashboard - Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav a:hover, .nav a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .page-title {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .page-title h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .page-title p {
+            font-size: 1.2em;
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .status-bar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: white;
+        }
+        
+        .vpn-status-indicator {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .instructions {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #ffd700;
+        }
+        
+        .instructions ol {
+            line-height: 1.8;
+        }
+        
+        .instructions code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            opacity: 0.8;
+        }
+        
+        .error-message {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .success-message {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid rgba(40, 167, 69, 0.5);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="#" class="logo">⚡ VoltageGPU</a>
+            <nav class="nav">
+                <a href="#" class="active">🛡️ VPN Dashboard</a>
+                <a href="#">📊 Overview</a>
+                <a href="#">🌍 Servers</a>
+                <a href="#">📈 Monitoring</a>
+                <a href="#">⚙️ Settings</a>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-title">
+            <h1>🛡️ VPN Dashboard</h1>
+            <p>Secure your connection with our global VPN network</p>
+        </div>
+
+        <div class="status-bar">
+            <div class="vpn-status-indicator" id="connection-status">
+                🔄 Checking VPN connection...
+            </div>
+            <p>Real-time VPN status monitoring</p>
+        </div>
+
+        <div class="instructions">
+            <h3>🚀 How to integrate VPN Dashboard on your website:</h3>
+            <ol>
+                <li>Start the FREE VPN server locally: <code>python vpn.py</code></li>
+                <li>Include the VPN widget script in your HTML:</li>
+                <pre><code>&lt;script src="vpn_widget.js"&gt;&lt;/script&gt;</code></pre>
+                <li>Add a container div where you want the VPN dashboard:</li>
+                <pre><code>&lt;div id="vpn-widget"&gt;&lt;/div&gt;</code></pre>
+                <li>The widget will automatically initialize and connect to your local VPN server</li>
+                <li>Users can control the VPN directly from your website!</li>
+            </ol>
+            
+            <h3>🔧 Advanced Configuration:</h3>
+            <pre><code>// Custom configuration
+const vpnWidget = new VoltageVPNWidget({
+    apiUrl: 'http://localhost:8080/api',
+    containerId: 'my-vpn-container',
+    autoRefresh: true,
+    refreshInterval: 3000
+});</code></pre>
+        </div>
+
+        <!-- VPN Widget Container -->
+        <div id="vpn-widget"></div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 VoltageGPU - Powered by FREE VPN Technology</p>
+        <p>🛡️ Secure • 🌍 Global • ⚡ Fast</p>
+    </div>
+
+    <!-- Include the VPN Widget -->
+    <script src="vpn_widget.js"></script>
+    
+    <script>
+        // Check if VPN server is running
+        async function checkVPNServer() {
+            try {
+                const response = await fetch('http://localhost:8080/api/status');
+                if (response.ok) {
+                    document.getElementById('connection-status').innerHTML = '✅ VPN Server Connected';
+                    document.getElementById('connection-status').style.color = '#28a745';
+                } else {
+                    throw new Error('Server not responding');
+                }
+            } catch (error) {
+                document.getElementById('connection-status').innerHTML = '❌ VPN Server Offline';
+                document.getElementById('connection-status').style.color = '#dc3545';
+                
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.innerHTML = `
+                    <h4>🚨 VPN Server Not Running</h4>
+                    <p>To use this dashboard, please start the FREE VPN server:</p>
+                    <code>python vpn.py</code>
+                    <p>Then refresh this page.</p>
+                `;
+                
+                const container = document.querySelector('.container');
+                container.insertBefore(errorDiv, document.getElementById('vpn-widget'));
+            }
+        }
+        
+        // Check server status on page load
+        checkVPNServer();
+        
+        // Recheck every 10 seconds
+        setInterval(checkVPNServer, 10000);
+    </script>
+</body>
+</html>
